@@ -1,8 +1,10 @@
 #! /usr/bin/env perl
 
-use v5.30.3;
+use v5.34.0;
 use strict;
 use warnings;
+use POSIX qw(strftime);
+use File::Basename;
 
 sub print_usage() {
   say "A command line utitlity for randomizing answers in a set of questions.";
@@ -44,21 +46,14 @@ while (my $test = readline($master_file_handle)) {
 }
 
 
-#####
-#
-# Steps:
-#
-# Separate in header (containing description of test and also form for name and student id) and
-# questions section. That way, we can easily manipulate the questions section without affecting the description.
-#
-# In the end, we simply merge it back.
-#
-#####
+
 my @sections = split(/_{40,100}/, $file_content);
 
 my $header = $sections[0];
-my @questions = @sections[1..(scalar @sections - 1)];
+my @questions = @sections[1..(scalar @sections - 2)];
 
+my $final_result = $header;
+$final_result .= "________________________________________________________________________________";
 
 # Replace [X] with [ ] and randomize questions 
 my $regex = qr/(\[X])/mp;
@@ -68,14 +63,32 @@ for (@questions) {
   $_ = $_ =~ s/$regex/$subst/rg;
 
   my @answers = $_ =~ m/(.*\[ ].*\n?)/g;
+  my $answer_count = scalar @answers;
 
-  # if ($answers[5]) {
-  #   say $answers[5];
-  # }
+  my $new_answer_order = "";
+
+  for (my $i = 0; $i < $answer_count; $i++) {
+    my $rand_index = rand(scalar @answers);
+    $new_answer_order .= $answers[$rand_index];
+    splice(@answers, $rand_index, 1);
+  }
+  $_ = $_ =~ s/(.*\[ ].*\n?)//rg;
+  $_ .= $new_answer_order;
+
+  $final_result .= $_;
+  $final_result .= "\n________________________________________________________________________________";
 }
 
+my $now_string = strftime "%Y%m%d-%H%M%S", localtime;
+my $output_file_name = "$now_string-" . basename($master_file_name);
 
+say $output_file_name;
 
-# $file_content = $file_content =~ s/$regex/$subst/rg;
+$opened = open(my $output_file_handle, ">", $output_file_name);
+if (!$opened) {
+  warn qq{Unable to open file "$output_file_name": \n\t$!\nFailed};
+  exit(1);
+}
 
-# say $file_content;
+say $output_file_handle $final_result;
+
