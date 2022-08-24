@@ -47,6 +47,7 @@ while (my $test = readline($master_file_handle)) {
 
 
 
+# TODO: Improve to include the separators in the sections
 my @sections = split(/_{40,100}/, $file_content);
 
 my $header = $sections[0];
