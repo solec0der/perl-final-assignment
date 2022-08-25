@@ -32,8 +32,8 @@ my $master_file_handle = open_file($master_file_name, 1, "<");
 # Read file content into variable $file_content
 my $file_content = "";
 
-while (my $test = readline($master_file_handle)) {
-  $file_content .= $test;
+while (my $buffer = readline($master_file_handle)) {
+  $file_content .= $buffer;
 }
 
 my @sections = split(/_{40,100}/, $file_content);
