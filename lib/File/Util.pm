@@ -1,6 +1,6 @@
-package IO::Util;
+package File::Util;
 
-use v5.34.0;
+use v5.30.3;
 use strict;
 use warnings;
 use experimental 'signatures';

@@ -1,13 +1,13 @@
 #! /usr/bin/env perl
 
-use v5.34.0;
+use v5.30.3;
 use strict;
 use warnings;
 use POSIX qw(strftime);
 
 use File::Basename;
 use List::Util qw(shuffle);
-use IO::Util;
+use File::Util;
 
 sub print_usage() {
   say "A command line utitlity for randomizing answers in a set of questions.";
