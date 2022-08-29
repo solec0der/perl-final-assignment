@@ -10,7 +10,7 @@ use Terminal::Util;
 
 my $master_file_name = $ARGV[0] || "";
 
-if ($master_file_name eq "") {
+if ($master_file_name eq "" || $master_file_name eq "help") {
     print_usage_for_create_exam_script();
     exit(1);
 }
