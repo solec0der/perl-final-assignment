@@ -9,8 +9,6 @@ use File::Util;
 use Exporter 'import';
 our @EXPORT = ('parse_exam');
 
-use Data::Dump qw(dump);
-
 my $SEPARATOR = "________________________________________________________________________________";
 my $SEPARATOR_LINE = qr/_{40,100}/xms;
 my $QUESTION_LINE = qr/\d* \. \s* (?<question> .*?) ^$/xms;

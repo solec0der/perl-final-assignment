@@ -5,7 +5,6 @@ use warnings;
 use Test::More;
 
 use Exam::Parser;
-use Data::Dump qw(dump);
 
 plan tests => 6;
 
