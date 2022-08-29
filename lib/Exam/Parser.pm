@@ -18,12 +18,11 @@ my $ANSWER_LINE = qr/\s*(.* \[ [X | \s* ] ] .* \n?)/x;
 
 sub parse_exam ($file_handle) {
     my %exam;
-
     my $file_content = load_file($file_handle);
 
     my @sections = split($SEPARATOR_LINE, $file_content);
     $exam{'HEADER'} = $sections[0];
-    $exam{'QUESTIONS'} = ();
+    $exam{'QUESTIONS'} = [];
 
     for my $raw_question (@sections[1..(scalar @sections - 2)]) {
         if ($raw_question =~ $QUESTION_LINE) {
@@ -36,6 +35,7 @@ sub parse_exam ($file_handle) {
             push(@{$exam{'QUESTIONS'}}, \%question);
         }
     }
+    return \%exam;
 }
 
 1;

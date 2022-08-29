@@ -1,0 +1,29 @@
+Student ID:  [____________]
+Family Name: [____________]
+First Name:  [____________]
+
+INSTRUCTIONS:
+
+Complete and return this multiple-choice exam
+no later than 23:59 CET Monday 23 August 2021.
+
+You may consult any written material you wish
+(e.g. the class notes or the recommended textbook),
+but you must not consult or collaborate with
+any other person.
+
+Complete this exam by placing an 'X' in the box
+beside the single correct answer of each question,
+like so:
+
+    [ ] This is not the correct answer
+    [ ] This is not the correct answer either
+    [ ] This is an incorrect answer
+    [X] This is the correct answer
+    [ ] This is an irrelevant answer
+
+WARNING: Each question has only one correct answer.
+         If two or more boxes are marked with an 'X',
+         the answer will be scored as zero.
+
+________________________________________________________________________________

@@ -93,5 +93,4 @@ tags
 [._]*.un~
 
 # End of https://www.toptal.com/developers/gitignore/api/perl,macos,vim
-*.txt
 .idea
