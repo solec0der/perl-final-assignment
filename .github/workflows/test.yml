@@ -24,6 +24,6 @@ jobs:
           # The Perl version to download (if necessary) and use. Example: 5.30.0
           perl-version: 5.30.3
       - name: Run tests
-        run: prove t
-
-        
+        run: |
+          export PERL5LIB="$PERL5LIB:./lib"
+          prove t
