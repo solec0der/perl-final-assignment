@@ -6,23 +6,33 @@ use warnings;
 use experimental 'signatures';
 
 use File::Util;
+use File::Basename;
 use List::Util 'shuffle';
 use Exporter 'import';
-our @EXPORT = ('parse_exam', 'uncheck_all_answers', 'randomize_order_of_answers', 'create_exam_file');
+our @EXPORT = (
+    'parse_exam',
+    'uncheck_all_answers',
+    'randomize_order_of_answers',
+    'create_exam_file',
+    'get_checked_answers',
+    'normalize_string');
 
 my $SEPARATOR = "________________________________________________________________________________";
 my $SEPARATOR_LINE = qr/_{40,100}/xms;
 my $QUESTION_LINE = qr/\d* \. \s* (?<question> .*?) ^$/xms;
 my $ANSWER_LINE = qr/\s*(.* \[ [X | \s* ] ] .* \n?)/x;
 
-my $ANSWER_UNCHECK_REGEX = qr/(\[X])/mp;
+my $ANSWER_CHECKED_REGEX = qr/(\[X])/mp;
 my $ANSWER_UNCHECK_SUBST = '[ ]';
 
-sub parse_exam($file_content) {
+sub parse_exam($source_file_name, $file_content) {
     my %exam;
 
     my @sections = split($SEPARATOR_LINE, $file_content);
+
+    say scalar(@sections);
     $exam{'HEADER'} = $sections[0];
+    $exam{'SOURCE_FILE_NAME'} = basename($source_file_name);
     $exam{'QUESTIONS'} = [];
 
     for my $raw_question (@sections[1 .. (scalar @sections - 2)]) {
@@ -44,7 +54,7 @@ sub uncheck_all_answers($exam) {
 
     for my $question (@{$questions}) {
         for my $answer (@{$question->{'ANSWERS'}}) {
-            $answer = $answer =~ s/$ANSWER_UNCHECK_REGEX/$ANSWER_UNCHECK_SUBST/rg;
+            $answer = $answer =~ s/$ANSWER_CHECKED_REGEX/$ANSWER_UNCHECK_SUBST/rg;
         }
     }
 }
@@ -55,6 +65,29 @@ sub randomize_order_of_answers($exam) {
     for my $question (@{$questions}) {
         @{$question->{'ANSWERS'}} = shuffle(@{$question->{'ANSWERS'}});
     }
+}
+
+sub normalize_string($string) {
+    my $normalized_string = lc($string);
+    $normalized_string =~ s/^\s+|\s+$//g;
+    $normalized_string =~ s/\s+/ /g;
+    return $normalized_string;
+}
+
+sub get_checked_answers($question) {
+    my @all_answers = @{$question->{'ANSWERS'}};
+    my @checked_answers;
+
+    for my $answer (@all_answers) {
+        if (is_answer_checked($answer)) {
+            push(@checked_answers, $answer);
+        }
+    }
+    return \@checked_answers;
+}
+
+sub is_answer_checked($answer) {
+    return $answer =~ $ANSWER_CHECKED_REGEX ? 1 : 0;
 }
 
 sub create_exam_file($exam, $master_file_name) {

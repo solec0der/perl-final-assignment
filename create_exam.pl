@@ -16,7 +16,7 @@ if ($master_file_name eq "" || $master_file_name eq "help") {
 }
 
 my $master_file_content = load_file($master_file_name);
-my $exam = parse_exam($master_file_content);
+my $exam = parse_exam($master_file_name, $master_file_content);
 
 uncheck_all_answers($exam);
 randomize_order_of_answers($exam);
