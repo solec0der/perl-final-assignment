@@ -55,12 +55,7 @@ my $EXAM_GRAMMAR = qr{
 }xms;
 
 my $SEPARATOR = "________________________________________________________________________________";
-# my $SEPARATOR_LINE = qr/_{40,100}/xms;
-# my $QUESTION_LINE = qr/\d* \. \s* (?<question> .*?) ^$/xms;
-# my $ANSWER_LINE = qr/\s*(.* \[ [X | \s* ] ] .* \n?)/x;
-
 my $ANSWER_CHECKED_REGEX = qr/(\[[xX]])/mp;
-# my $ANSWER_UNCHECK_SUBST = '[ ]';
 
 sub parse_exam($source_file_name, $file_content) {
     my $exam;
