@@ -17,53 +17,76 @@ our @EXPORT = (
     'get_checked_answers',
     'normalize_string');
 
+use Regexp::Grammars;
+
+my $EXAM_GRAMMAR = qr{
+    <exam>
+    <nocontext:>
+
+    <rule: exam>
+        <header>
+        <[questions]>+ % <.separator>
+
+    <token: header>
+        .*? <.separator>
+
+    <token: separator>
+        ^ \h* _+ \h* \n
+
+    <rule: questions>
+        <question>
+        <[answers]>+
+
+    <token: question>
+        ^ \h* <number> \. \h* <text>
+
+    <token: answers>
+        ^ \h* <checkbox> \h* <text>
+
+    <token: number>
+        \d+
+
+    <token: checkbox>
+        \[ [^]\v]* \]
+
+    <token: text>
+        \N* \n
+        (?: <!answers> ^ \N* \S \N* \n )*
+}xms;
+
 my $SEPARATOR = "________________________________________________________________________________";
-my $SEPARATOR_LINE = qr/_{40,100}/xms;
-my $QUESTION_LINE = qr/\d* \. \s* (?<question> .*?) ^$/xms;
-my $ANSWER_LINE = qr/\s*(.* \[ [X | \s* ] ] .* \n?)/x;
+# my $SEPARATOR_LINE = qr/_{40,100}/xms;
+# my $QUESTION_LINE = qr/\d* \. \s* (?<question> .*?) ^$/xms;
+# my $ANSWER_LINE = qr/\s*(.* \[ [X | \s* ] ] .* \n?)/x;
 
 my $ANSWER_CHECKED_REGEX = qr/(\[X])/mp;
-my $ANSWER_UNCHECK_SUBST = '[ ]';
+# my $ANSWER_UNCHECK_SUBST = '[ ]';
 
 sub parse_exam($source_file_name, $file_content) {
-    my %exam;
-
-    my @sections = split($SEPARATOR_LINE, $file_content);
-
-    say scalar(@sections);
-    $exam{'HEADER'} = $sections[0];
-    $exam{'SOURCE_FILE_NAME'} = basename($source_file_name);
-    $exam{'QUESTIONS'} = [];
-
-    for my $raw_question (@sections[1 .. (scalar @sections - 2)]) {
-        if ($raw_question =~ $QUESTION_LINE) {
-            my %question;
-            $question{'QUESTION_TEXT'} = $+{question};
-
-            my @answer = $raw_question =~ m/$ANSWER_LINE/gx;
-            $question{'ANSWERS'} = \@answer;
-
-            push(@{$exam{'QUESTIONS'}}, \%question);
-        }
+    my $exam;
+    if ($file_content =~ $EXAM_GRAMMAR) {
+        $exam = $/{exam};
     }
-    return \%exam;
+    $exam->{'source_file_name'} = basename($source_file_name);
+
+    return $exam;
 }
 
 sub uncheck_all_answers($exam) {
-    my $questions = $exam->{'QUESTIONS'};
+    my $questions = $exam->{'questions'};
 
     for my $question (@{$questions}) {
-        for my $answer (@{$question->{'ANSWERS'}}) {
-            $answer = $answer =~ s/$ANSWER_CHECKED_REGEX/$ANSWER_UNCHECK_SUBST/rg;
+        for my $answer (@{$question->{'answers'}}) {
+            $answer->{'checkbox'} = "[ ]";
         }
     }
 }
 
 sub randomize_order_of_answers($exam) {
-    my $questions = $exam->{'QUESTIONS'};
+    my $questions = $exam->{'questions'};
 
     for my $question (@{$questions}) {
-        @{$question->{'ANSWERS'}} = shuffle(@{$question->{'ANSWERS'}});
+        @{$question->{'answers'}} = shuffle(@{$question->{'answers'}});
     }
 }
 
@@ -91,19 +114,20 @@ sub is_answer_checked($answer) {
 }
 
 sub create_exam_file($exam, $master_file_name) {
-    my $final_result = "$exam->{'HEADER'}$SEPARATOR\n\n";
-    my $questions = $exam->{'QUESTIONS'};
+    my $final_result = "$exam->{'header'}\n";
+    my $questions = $exam->{'questions'};
 
-    for my $i (0 .. $#{$questions}) {
-        my $question = ${$questions}[$i];
-        my $question_number = $i + 1;
-        $final_result .= "$question_number. $question->{'QUESTION_TEXT'}\n";
+    for my $question (@{$questions}) {
+        my $question_number = $question->{'question'}->{'number'};
+        my $question_text = $question->{'question'}->{'text'};
 
-        for my $answer (@{$question->{'ANSWERS'}}) {
-            $final_result .= "    $answer";
+        $final_result .= "$question_number. $question_text\n";
+
+        for my $answer (@{$question->{'answers'}}) {
+            $final_result .= "    [ ] $answer->{'text'}";
         }
 
-        $final_result .= "\n$SEPARATOR\n\n\n"
+        $final_result .= "\n$SEPARATOR\n\n\n";
     }
 
     my $output_file_name = create_filename_for_exam_file($master_file_name);

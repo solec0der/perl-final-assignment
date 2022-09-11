@@ -8,6 +8,8 @@ use File::Util;
 use Exam::Parser;
 use Terminal::Util;
 
+use Data::Dump 'dump';
+
 my $master_file_name = $ARGV[0] || "";
 
 if ($master_file_name eq "" || $master_file_name eq "help") {
