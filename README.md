@@ -41,12 +41,12 @@ Examples
   - [x] Globbing
   - [x] Only one check mark must be checked. Otherwise 0 points will be awarded.
   - [x] If only one check mark is checked and the checked answer is the correct one according to the master exam file, one point will be awarded.
-  - [ ] Print out the students file name and the number of correct answers / the number of questions an answer was provided
-  - [ ] Report if a question is missing in student's file.
+  - [x] Print out the students file name and the number of correct answers / the number of questions an answer was provided
+  - [x] Report if a question is missing in student's file.
   - [ ] Report if an answer is missing in student's file.
 - [ ] Part 2: Inexact matching of questions and answers
   - [ ] Normalization
-    - [ ] To Lower Case
+    - [x] To Lower Case
     - [ ] Remove stop-words from the text
     - [ ] Remove any sequence of whitespace characters at the start and/or the end of the text
     - [ ] Replace any remaining sequence of whitespace characters within the text with a single space character.
