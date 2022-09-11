@@ -46,3 +46,7 @@ sub score_exam($master_exam, $student_exam) {
     }
     say "$student_exam->{'source_file_name'} scored $score/30 points";
 }
+
+sub is_missing_answer() {
+
+}
