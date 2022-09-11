@@ -22,39 +22,27 @@ sub score_exams($master_exam, $student_exams) {
 sub score_exam($master_exam, $student_exam) {
     my $score = 0;
 
-    for my $master_question (@{$master_exam->{'QUESTIONS'}}) {
+    for my $master_question (@{$master_exam->{'questions'}}) {
+        my $master_question_text = $master_question->{'question'}->{'text'};
+
         my @checked_answers = @{get_checked_answers($master_question)};
-        my $master_question_text = $master_question->{'QUESTION_TEXT'};
         my $correct_answer = $checked_answers[0];
 
-        # search for this exact question in the student exam
-        my ($output) = grep { $_->{'QUESTION_TEXT'} eq $master_question_text } @{$student_exam->{'QUESTIONS'}};
+        for my $student_question (@{$student_exam->{'questions'}}) {
+            my $student_question_text = $student_question->{'question'}->{'text'};
 
-        dump ($student_exam->{'QUESTIONS'});
+            if (normalize_string($master_question_text) eq normalize_string($student_question_text)) {
+                my @student_checked_answers = @{get_checked_answers($student_question)};
 
-        last;
-        # dump ($output);
+                if (scalar(@student_checked_answers) == 1) {
+                    my $student_answer = $student_checked_answers[0]->{'text'};
 
-
-        # for my $question (@{$student_exam->{'QUESTIONS'}}) {
-        #     my $question_text = $question->{'QUESTION_TEXT'};
-        #
-        #     # we found the question
-        #     if (normalize_string($master_question_text) eq normalize_string($question_text)) {
-        #         my @student_checked_answers = @{get_checked_answers($question)};
-        #
-        #         for (@student_checked_answers) {
-        #             # if (normalize_string($correct_answer) eq normalize_string($_)) {
-        #             $score++;
-        #             # } else {
-        #             #     dump(@student_checked_answers);
-        #             # }
-        #         }
-        #         last;
-        #     }
-        # }
-
+                    if (normalize_string($student_answer) eq normalize_string($correct_answer->{'text'})) {
+                        $score++;
+                    }
+                }
+            }
+        }
     }
-
-    say "$score/30";
+    say "$student_exam->{'source_file_name'} scored $score/30 points";
 }

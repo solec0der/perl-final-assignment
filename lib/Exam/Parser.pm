@@ -59,7 +59,7 @@ my $SEPARATOR = "_______________________________________________________________
 # my $QUESTION_LINE = qr/\d* \. \s* (?<question> .*?) ^$/xms;
 # my $ANSWER_LINE = qr/\s*(.* \[ [X | \s* ] ] .* \n?)/x;
 
-my $ANSWER_CHECKED_REGEX = qr/(\[X])/mp;
+my $ANSWER_CHECKED_REGEX = qr/(\[[xX]])/mp;
 # my $ANSWER_UNCHECK_SUBST = '[ ]';
 
 sub parse_exam($source_file_name, $file_content) {
@@ -98,11 +98,11 @@ sub normalize_string($string) {
 }
 
 sub get_checked_answers($question) {
-    my @all_answers = @{$question->{'ANSWERS'}};
+    my @all_answers = @{$question->{'answers'}};
     my @checked_answers;
 
     for my $answer (@all_answers) {
-        if (is_answer_checked($answer)) {
+        if (is_answer_checked($answer->{'checkbox'})) {
             push(@checked_answers, $answer);
         }
     }
