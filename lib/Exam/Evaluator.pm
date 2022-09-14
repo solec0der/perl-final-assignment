@@ -6,6 +6,7 @@ use warnings;
 use experimental 'signatures';
 
 use Exam::Parser;
+use String::Util;
 
 use Exporter 'import';
 our @EXPORT = ('score_exams', 'print_missing_questions_and_answers');
@@ -38,7 +39,7 @@ sub score_exam($master_exam, $student_exam) {
         for my $student_question (@{$student_exam->{'questions'}}) {
             my $student_question_text = $student_question->{'question'}->{'text'};
 
-            if (normalize_string($master_question_text) eq normalize_string($student_question_text)) {
+            if (levenstein_equals($master_question_text, $student_question_text)) {
                 $found_question = 1;
                 my @student_checked_answers = @{get_checked_answers($student_question)};
 
@@ -46,10 +47,11 @@ sub score_exam($master_exam, $student_exam) {
                     $report{'answered_questions'}++;
                     my $student_answer = $student_checked_answers[0]->{'text'};
 
-                    if (normalize_string($student_answer) eq normalize_string($correct_answer->{'text'})) {
+                    if (levenstein_equals($student_answer, $correct_answer->{'text'})) {
                         $report{'correctly_answered_questions'}++;
                     }
                 }
+                last;
             }
         }
 

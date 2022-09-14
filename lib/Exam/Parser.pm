@@ -14,8 +14,7 @@ our @EXPORT = (
     'uncheck_all_answers',
     'randomize_order_of_answers',
     'create_exam_file',
-    'get_checked_answers',
-    'normalize_string');
+    'get_checked_answers');
 
 use Regexp::Grammars;
 
@@ -83,13 +82,6 @@ sub randomize_order_of_answers($exam) {
     for my $question (@{$questions}) {
         @{$question->{'answers'}} = shuffle(@{$question->{'answers'}});
     }
-}
-
-sub normalize_string($string) {
-    my $normalized_string = lc($string);
-    $normalized_string =~ s/^\s+|\s+$//g;
-    $normalized_string =~ s/\s+/ /g;
-    return $normalized_string;
 }
 
 sub get_checked_answers($question) {
