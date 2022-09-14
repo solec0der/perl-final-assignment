@@ -8,6 +8,8 @@ use experimental 'signatures';
 use Exam::Parser;
 use String::Util;
 
+use Data::Dumper;
+
 use Exporter 'import';
 our @EXPORT = ('score_exams', 'print_missing_questions_and_answers');
 
@@ -42,6 +44,9 @@ sub score_exam($master_exam, $student_exam) {
             if (levenstein_equals($master_question_text, $student_question_text)) {
                 $found_question = 1;
                 my @student_checked_answers = @{get_checked_answers($student_question)};
+                my @missing_answers = @{get_missing_answers($master_question->{'answers'}, $student_question->{'answers'})};
+
+                push @{$report{'missing_answers'}}, @missing_answers;
 
                 if (scalar(@student_checked_answers) == 1) {
                     $report{'answered_questions'}++;
@@ -66,7 +71,23 @@ sub score_exam($master_exam, $student_exam) {
 }
 
 sub get_missing_answers($actual_answers, $student_answers) {
+    my @missing_answers = ();
 
+    for my $actual_answer (@{$actual_answers}) {
+        my $found = 0;
+
+        for my $student_answer (@{$student_answers}) {
+            if (levenstein_equals($actual_answer->{'text'}, $student_answer->{'text'})) {
+                $found = 1;
+                last;
+            }
+        }
+        if ($found == 0) {
+            push(@missing_answers, $actual_answer->{'text'});
+        }
+    }
+
+    return \@missing_answers;
 }
 
 sub print_score($report) {

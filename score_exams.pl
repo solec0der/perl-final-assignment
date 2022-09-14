@@ -36,7 +36,4 @@ for my $student_exam_file_name (@student_exam_file_names) {
 
 my $reports = score_exams($master_exam, \@student_exams);
 
-
-
 print_missing_questions_and_answers($reports);
-
