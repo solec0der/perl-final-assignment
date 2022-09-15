@@ -124,3 +124,35 @@ sub create_exam_file($exam, $master_file_name) {
 }
 
 1;
+
+=head1 NAME
+
+Exam::Parser - Module to parse exam files into a perl datastructure and create exam files from that datastructure.
+
+=head1 VERSION
+
+This documentation refers to Exam::Parser version 0.0.1
+
+=head1 SYNOPSIS
+
+    use Exam::Parser;
+
+    my $file_name = "_source_exam_file.txt";
+
+    # Read an exam into a variable as a string
+    my $exam_content = do { local $/; readline($file_handle); };
+
+    # Create datastructure from file content
+    my $exam = parse_exam($file_name, $exam_content);
+
+    # Randomize the order of answers
+    randomize_order_of_answers($exam);
+
+    # Uncheck all answers (useful, when creating an exam file for students)
+    uncheck_all_answers($exam);
+
+    # Get checked answers (returns an array of all checked answers of a question)
+    get_checked_answers($question);
+
+    # Create a new text file from the exam datastructure
+    create_exam_file($exam, $file_name);

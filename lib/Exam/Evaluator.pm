@@ -41,18 +41,32 @@ sub score_exam($master_exam, $student_exam) {
         for my $student_question (@{$student_exam->{'questions'}}) {
             my $student_question_text = $student_question->{'question'}->{'text'};
 
-            if (levenstein_equals($master_question_text, $student_question_text)) {
+            my $matched_question_text = fuzzy_match_string($master_question_text, $student_question_text);
+
+            if ($matched_question_text) {
+                if (!($matched_question_text eq normalize_string($master_question_text))) {
+                    my %ineaxct_match = (
+                        "expected_text" => normalize_string($master_question_text),
+                        "actual_text"   => $matched_question_text
+                    );
+
+                    push(@{$report{'inexactly_matched_questions'}}, \%ineaxct_match);
+                }
+
                 $found_question = 1;
                 my @student_checked_answers = @{get_checked_answers($student_question)};
-                my @missing_answers = @{get_missing_answers($master_question->{'answers'}, $student_question->{'answers'})};
+                my %missing_answers_report = %{get_missing_answers($master_question->{'answers'}, $student_question->{'answers'})};
 
-                push @{$report{'missing_answers'}}, @missing_answers;
+                push @{$report{'missing_answers'}}, @{$missing_answers_report{'missing_answers'}};
+                push @{$report{'inexactly_matched_answers'}}, @{$missing_answers_report{'inexact_matches'}};
 
                 if (scalar(@student_checked_answers) == 1) {
                     $report{'answered_questions'}++;
                     my $student_answer = $student_checked_answers[0]->{'text'};
 
-                    if (levenstein_equals($student_answer, $correct_answer->{'text'})) {
+                    my $matched_answer_text = fuzzy_match_string($student_answer, $correct_answer->{'text'});
+
+                    if ($matched_answer_text) {
                         $report{'correctly_answered_questions'}++;
                     }
                 }
@@ -72,13 +86,24 @@ sub score_exam($master_exam, $student_exam) {
 
 sub get_missing_answers($actual_answers, $student_answers) {
     my @missing_answers = ();
+    my @inexact_matches = ();
 
     for my $actual_answer (@{$actual_answers}) {
         my $found = 0;
 
         for my $student_answer (@{$student_answers}) {
-            if (levenstein_equals($actual_answer->{'text'}, $student_answer->{'text'})) {
+            my $matched_answer_text = fuzzy_match_string($actual_answer->{'text'}, $student_answer->{'text'});
+
+            if ($matched_answer_text) {
                 $found = 1;
+
+                if (!($matched_answer_text eq normalize_string($actual_answer->{'text'}))) {
+                    my %ineaxct_match = (
+                        "expected_text" => normalize_string($actual_answer->{'text'}),
+                        "actual_text"   => $matched_answer_text
+                    );
+                    push(@inexact_matches, \%ineaxct_match);
+                }
                 last;
             }
         }
@@ -86,8 +111,12 @@ sub get_missing_answers($actual_answers, $student_answers) {
             push(@missing_answers, $actual_answer->{'text'});
         }
     }
+    my %missing_answers_report = (
+        "missing_answers" => \@missing_answers,
+        "inexact_matches" => \@inexact_matches
+    );
 
-    return \@missing_answers;
+    return \%missing_answers_report;
 }
 
 sub print_score($report) {
@@ -110,6 +139,17 @@ sub print_missing_questions_and_answers($reports) {
 
         for my $missing_answer (@{$report->{'missing_answers'}}) {
             print "    Missing answer: $missing_answer";
+        }
+
+        for my $inexactly_matched_question (@{$report->{'inexactly_matched_questions'}}) {
+            print "    Missing question: " . $inexactly_matched_question->{'expected_text'};
+            print "    Used this instead: " . $inexactly_matched_question->{'actual_text'};
+        }
+
+        for my $inexactly_matched_answer (@{$report->{'inexactly_matched_answers'}}) {
+            say "    Missing answer: " . $inexactly_matched_answer->{'expected_text'};
+            say "    Used this instead: " . $inexactly_matched_answer->{'actual_text'};
+            say "";
         }
     }
 }
