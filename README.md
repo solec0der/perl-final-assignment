@@ -15,6 +15,13 @@ It contains two main parts:
 
 ## Usage
 
+### Install Dependencies
+
+```shell
+cpan install Regexp::Grammars
+cpan install Text::Levenshtein::XS
+```
+
 ### Create Exam Files
 
 ```shell
@@ -37,6 +44,12 @@ Usage
   $ ./score_exams.pl <PATH_TO_MASTER_EXAM_FILE> <GLOBBING_PATTERN_TO_EXAM_FILES>
 Examples
   ./score_exams.pl _short_exam_master_file.txt *completed_exam.txt
+```
+
+### Tests
+
+```shell
+prove t
 ```
 
 ## Implemented parts
