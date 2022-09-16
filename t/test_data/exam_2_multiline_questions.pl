@@ -1,27 +1,106 @@
 my $actual_exam = {
-    "HEADER",
-    "Student ID:  [____________]\nFamily Name: [____________]\nFirst Name:  [____________]\n\nINSTRUCTIONS:\n\nComplete and return this multiple-choice exam\nno later than 23:59 CET Monday 23 August 2021.\n\nYou may consult any written material you wish\n(e.g. the class notes or the recommended textbook),\nbut you must not consult or collaborate with\nany other person.\n\nComplete this exam by placing an 'X' in the box\nbeside the single correct answer of each question,\nlike so:\n\n    [ ] This is not the correct answer\n    [ ] This is not the correct answer either\n    [ ] This is an incorrect answer\n    [X] This is the correct answer\n    [ ] This is an irrelevant answer\n\nWARNING: Each question has only one correct answer.\n         If two or more boxes are marked with an 'X',\n         the answer will be scored as zero.\n\n",
-    "QUESTIONS",
-    [
+    'header' => 'Student ID:  [____________]
+Family Name: [____________]
+First Name:  [____________]
+
+INSTRUCTIONS:
+
+Complete and return this multiple-choice exam
+no later than 23:59 CET Monday 23 August 2021.
+
+You may consult any written material you wish
+(e.g. the class notes or the recommended textbook),
+but you must not consult or collaborate with
+any other person.
+
+Complete this exam by placing an \'X\' in the box
+beside the single correct answer of each question,
+like so:
+
+    [ ] This is not the correct answer
+    [ ] This is not the correct answer either
+    [ ] This is an incorrect answer
+    [X] This is the correct answer
+    [ ] This is an irrelevant answer
+
+WARNING: Each question has only one correct answer.
+         If two or more boxes are marked with an \'X\',
+         the answer will be scored as zero.
+
+________________________________________________________________________________
+',
+    'questions' => [
         {
-            ANSWERS       => [
-                "[X] Six:   because the four array elements will be flattened into the list\n",
-                "[ ] Eight: because 1 * 4 * 2 = 8\n",
-                "[ ] Three: because the array will become a single element within the list\n",
-                "[ ] Two:   because Perl ignores non-scalar variables in a list constructor\n",
-                "[ ] None:  because it won't compile; arrays can't be used in list constructors\n",
-            ],
-            QUESTION_TEXT => "If the array \@x contains four elements,\n    how many elements will be in the list (1, \@x, 2)?\n",
+            'question' => {
+                'text' => 'If the array @x contains four elements,
+    how many elements will be in the list (1, @x, 2)?
+',
+                'number' => '1'
+            },
+            'answers' => [
+                {
+                    'text' => 'Six:   because the four array elements will be flattened into the list
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'text' => 'Eight: because 1 * 4 * 2 = 8
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text' => 'Three: because the array will become a single element within the list
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text' => 'Two:   because Perl ignores non-scalar variables in a list constructor
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text' => 'None:  because it won\'t compile; arrays can\'t be used in list constructors
+',
+                    'checkbox' => '[ ]'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] sub two_or_more (\$flag, \@data)           {...}\n",
-                "[ ] sub two_or_more (\$data, \$flag)           {...}\n",
-                "[ ] sub two_or_more (\$flag, \$data = \@extras) {...}\n",
-                "[ ] sub two_or_more (\$flag, ...)             {...}\n",
-                "[ ] sub two_or_more (\@flags, \@data_set)      {...}\n",
+            'answers' => [
+                {
+                    'checkbox' => '[X]',
+                    'text' => 'sub two_or_more ($flag, @data)           {...}
+'
+                },
+                {
+                    'text' => 'sub two_or_more ($data, $flag)           {...}
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text' => 'sub two_or_more ($flag, $data = @extras) {...}
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text' => 'sub two_or_more ($flag, ...)             {...}
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text' => 'sub two_or_more (@flags, @data_set)      {...}
+'
+                }
             ],
-            QUESTION_TEXT => "Which one of the following subroutine declarations correctly declares\n    a subroutine that can must be called with at least two arguments\n    but which may also be called with more than two arguments?\n",
-        },
+            'question' => {
+                'text' => 'Which one of the following subroutine declarations correctly declares
+    a subroutine that can must be called with at least two arguments
+    but which may also be called with more than two arguments?
+',
+                'number' => '2'
+            }
+        }
     ],
+    'source_file_name' => 'source_file.txt'
 };

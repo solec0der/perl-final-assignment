@@ -5,9 +5,9 @@ use warnings;
 use Test::More;
 
 use Exam::Parser;
+use Data::Dumper;
 
 plan tests => 7;
-
 
 # Parse exam from master file
 open my $exam_file, '<', './t/test_data/exam_1_master_file.txt'
@@ -18,7 +18,7 @@ while (my $buffer = readline($exam_file)) {
     $exam_file_content .= $buffer;
 }
 
-my $actual_exam = parse_exam($exam_file_content);
+my $actual_exam = parse_exam("source_file.txt", $exam_file_content);
 my $expected_exam = do './t/test_data/exam_1.pl';
 
 ok eof($exam_file), "Consumed entire contents of file";
@@ -36,7 +36,7 @@ while (my $buffer = readline($exam_file)) {
     $exam_file_content .= $buffer;
 }
 
-$actual_exam = parse_exam($exam_file_content);
+$actual_exam = parse_exam("source_file.txt", $exam_file_content);
 $expected_exam = do './t/test_data/exam_2_multiline_questions.pl';
 
 ok eof($exam_file), "Consumed entire contents of file";
@@ -54,7 +54,7 @@ while (my $buffer = readline($exam_file)) {
     $exam_file_content .= $buffer;
 }
 
-$actual_exam = parse_exam($exam_file_content);
+$actual_exam = parse_exam("source_file.txt", $exam_file_content);
 $expected_exam = do './t/test_data/exam_3_no_questions.pl';
 
 ok eof($exam_file), "Consumed entire contents of file";

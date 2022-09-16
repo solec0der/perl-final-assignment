@@ -1,307 +1,1058 @@
 my $actual_exam = {
-    "HEADER",
-    "Student ID:  [____________]\nFamily Name: [____________]\nFirst Name:  [____________]\n\nINSTRUCTIONS:\n\nComplete and return this multiple-choice exam\nno later than 23:59 CET Monday 23 August 2021.\n\nYou may consult any written material you wish\n(e.g. the class notes or the recommended textbook),\nbut you must not consult or collaborate with\nany other person.\n\nComplete this exam by placing an 'X' in the box\nbeside the single correct answer of each question,\nlike so:\n\n    [ ] This is not the correct answer\n    [ ] This is not the correct answer either\n    [ ] This is an incorrect answer\n    [X] This is the correct answer\n    [ ] This is an irrelevant answer\n\nWARNING: Each question has only one correct answer.\n         If two or more boxes are marked with an 'X',\n         the answer will be scored as zero.\n\n",
-    "QUESTIONS",
-    [
+    'source_file_name' => 'source_file.txt',
+    'questions'        => [
         {
-            ANSWERS       => [
-                "[X] Nothing: Perl variables don't have a static type\n",
-                "[ ] The name of the variable\n",
-                "[ ] The type of the first value placed in the variable\n",
-                "[ ] The compile-time type declarator of the variable\n",
-                "[ ] Random chance\n",
+            'answers'  => [
+                {
+                    'text'     => 'Nothing: Perl variables don\'t have a static type
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'text'     => 'The name of the variable
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => 'The type of the first value placed in the variable
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => 'The compile-time type declarator of the variable
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'Random chance
+'
+                }
             ],
-            QUESTION_TEXT => "The static type of a Perl variable is determined by:\n",
+            'question' => {
+                'text'   => 'The static type of a Perl variable is determined by:
+',
+                'number' => '1'
+            }
         },
         {
-            ANSWERS       => [
-                "[X] List, scalar, and void\n",
-                "[ ] List, linear, and void\n",
-                "[ ] List, scalar, and null\n",
-                "[ ] Null, scalar, and void\n",
-                "[ ] Blood, sweat, and tears\n",
-            ],
-            QUESTION_TEXT => "Perl's three main types of call context (or \"amount context\") are:\n",
+            'question' => {
+                'text'   => 'Perl\'s three main types of call context (or "amount context") are:
+',
+                'number' => '2'
+            },
+            'answers'  => [
+                {
+                    'checkbox' => '[X]',
+                    'text'     => 'List, scalar, and void
+'
+                },
+                {
+                    'text'     => 'List, linear, and void
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'List, scalar, and null
+'
+                },
+                {
+                    'text'     => 'Null, scalar, and void
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'Blood, sweat, and tears
+'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] \$_\n",
-                "[ ] \@_\n",
-                "[ ] \$\$\n",
-                "[ ] \$=\n",
-                "[ ] The last variable that was successfully assigned to\n",
+            'answers'  => [
+                {
+                    'checkbox' => '[X]',
+                    'text'     => '$_
+'
+                },
+                {
+                    'text'     => '@_
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '$$
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '$=
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => 'The last variable that was successfully assigned to
+',
+                    'checkbox' => '[ ]'
+                }
             ],
-            QUESTION_TEXT => "The \"default variable\" (or \"topic variable\") is:\n",
+            'question' => {
+                'text'   => 'The "default variable" (or "topic variable") is:
+',
+                'number' => '3'
+            }
         },
         {
-            ANSWERS       => [
-                "[X] \@ARGV\n",
-                "[ ] \$ARGV\n",
-                "[ ] \@ARGS\n",
-                "[ ] \@ARG\n",
-                "[ ] \@_\n",
-            ],
-            QUESTION_TEXT => "You can access the command-line arguments of a Perl program via:\n",
+            'question' => {
+                'text'   => 'You can access the command-line arguments of a Perl program via:
+',
+                'number' => '4'
+            },
+            'answers'  => [
+                {
+                    'text'     => '@ARGV
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '$ARGV
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '@ARGS
+'
+                },
+                {
+                    'text'     => '@ARG
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '@_
+'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] CPAN\n",
-                "[ ] CSPAN\n",
-                "[ ] Github\n",
-                "[ ] Perlhub\n",
-                "[ ] www.perl.org\n",
-            ],
-            QUESTION_TEXT => "The main repository for Open Source Perl modules is:\n",
+            'question' => {
+                'text'   => 'The main repository for Open Source Perl modules is:
+',
+                'number' => '5'
+            },
+            'answers'  => [
+                {
+                    'checkbox' => '[X]',
+                    'text'     => 'CPAN
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'CSPAN
+'
+                },
+                {
+                    'text'     => 'Github
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'Perlhub
+'
+                },
+                {
+                    'text'     => 'www.perl.org
+',
+                    'checkbox' => '[ ]'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] '\$' for scalars, '\@' for arrays, '%' for hashes\n",
-                "[ ] '\$' for scalars, '\@' for hashes, '%' for arrays\n",
-                "[ ] '\$' for scalars, '\@' for consts, '%' for literals\n",
-                "[ ] '\$' for numeric, '\@' for emails, '%' for percentages\n",
-                "[ ] '\$' for lookups, '\@' for reuses, '%' for declarations\n",
-            ],
-            QUESTION_TEXT => "The three standard sigils for variable declarations are:\n",
+            'question' => {
+                'text'   => 'The three standard sigils for variable declarations are:
+',
+                'number' => '6'
+            },
+            'answers'  => [
+                {
+                    'text'     => '\'$\' for scalars, \'@\' for arrays, \'%\' for hashes
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '\'$\' for scalars, \'@\' for hashes, \'%\' for arrays
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '\'$\' for scalars, \'@\' for consts, \'%\' for literals
+'
+                },
+                {
+                    'text'     => '\'$\' for numeric, \'@\' for emails, \'%\' for percentages
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '\'$\' for lookups, \'@\' for reuses, \'%\' for declarations
+',
+                    'checkbox' => '[ ]'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] 'my' variables are lexically scoped;  'our' variables are package scoped\n",
-                "[ ] 'my' variables are subroutine scoped; 'our' variables are block scoped\n",
-                "[ ] 'my' variables are compile-time;      'our' variables are run-time\n",
-                "[ ] 'my' variables must be scalars;       'our' variables must be arrays or hashes\n",
-                "[ ] 'my' variables are assignable;        'our' variables are constants\n",
+            'answers'  => [
+                {
+                    'text'     => '\'my\' variables are lexically scoped;  \'our\' variables are package scoped
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'text'     => '\'my\' variables are subroutine scoped; \'our\' variables are block scoped
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '\'my\' variables are compile-time;      \'our\' variables are run-time
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '\'my\' variables must be scalars;       \'our\' variables must be arrays or hashes
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '\'my\' variables are assignable;        \'our\' variables are constants
+',
+                    'checkbox' => '[ ]'
+                }
             ],
-            QUESTION_TEXT => "The difference between a 'my' variable and an 'our' variable is:\n",
+            'question' => {
+                'text'   => 'The difference between a \'my\' variable and an \'our\' variable is:
+',
+                'number' => '7'
+            }
         },
         {
-            ANSWERS       => [
-                "[X] ...does not interpolate variables or backslashed escape sequences\n",
-                "[ ] ...only interpolates variables, but not backslashed escape sequences\n",
-                "[ ] ...only interpolates backslashed escape sequences, but not variables\n",
-                "[ ] ...interpolates both variables and backslashed escape sequences\n",
-                "[ ] ...converts its contents to ASCII, even if they are Unicode characters\n",
+            'answers'  => [
+                {
+                    'checkbox' => '[X]',
+                    'text'     => '...does not interpolate variables or backslashed escape sequences
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '...only interpolates variables, but not backslashed escape sequences
+'
+                },
+                {
+                    'text'     => '...only interpolates backslashed escape sequences, but not variables
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '...interpolates both variables and backslashed escape sequences
+'
+                },
+                {
+                    'text'     => '...converts its contents to ASCII, even if they are Unicode characters
+',
+                    'checkbox' => '[ ]'
+                }
             ],
-            QUESTION_TEXT => "A single-quoted string (such as: 'I will achieve 100% on this exam')...\n",
+            'question' => {
+                'text'   => 'A single-quoted string (such as: \'I will achieve 100% on this exam\')...
+',
+                'number' => '8'
+            }
         },
         {
-            ANSWERS       => [
-                "[X] ...another way of writing the double-quoted string: \"XXXXX\"\n",
-                "[ ] ...another way of writing the single-quoted string: 'XXXXX'\n",
-                "[ ] ...another way of writing the list of strings:  ('X', 'X', 'X', 'X', 'X')\n",
-                "[ ] ...another way of writing the array of strings: ['X', 'X', 'X', 'X', 'X']\n",
-                "[ ] ...a call to the 'qq' function, passing it a block of code\n",
-            ],
-            QUESTION_TEXT => "The term qq{XXXXX} is...\n",
+            'question' => {
+                'number' => '9',
+                'text'   => 'The term qq{XXXXX} is...
+'
+            },
+            'answers'  => [
+                {
+                    'text'     => '...another way of writing the double-quoted string: "XXXXX"
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '...another way of writing the single-quoted string: \'XXXXX\'
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '...another way of writing the list of strings:  (\'X\', \'X\', \'X\', \'X\', \'X\')
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '...another way of writing the array of strings: [\'X\', \'X\', \'X\', \'X\', \'X\']
+'
+                },
+                {
+                    'text'     => '...a call to the \'qq\' function, passing it a block of code
+',
+                    'checkbox' => '[ ]'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] 1'042\n",
-                "[ ] 1042\n",
-                "[ ] 1_042\n",
-                "[ ] 1.042e3\n",
-                "[ ] 0b10000010010\n",
-            ],
-            QUESTION_TEXT => "Which of the following is NOT a single valid Perl number?\n",
+            'question' => {
+                'text'   => 'Which of the following is NOT a single valid Perl number?
+',
+                'number' => '10'
+            },
+            'answers'  => [
+                {
+                    'text'     => '1\'042
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '1042
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '1_042
+'
+                },
+                {
+                    'text'     => '1.042e3
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '0b10000010010
+'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] A container for a list\n",
-                "[ ] Exactly the same thing as a list\n",
-                "[ ] Something that is always contained inside a list\n",
-                "[ ] A list with a predeclared fixed number of elements\n",
-                "[ ] A multidimensional list\n",
+            'answers'  => [
+                {
+                    'text'     => 'A container for a list
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'text'     => 'Exactly the same thing as a list
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'Something that is always contained inside a list
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'A list with a predeclared fixed number of elements
+'
+                },
+                {
+                    'text'     => 'A multidimensional list
+',
+                    'checkbox' => '[ ]'
+                }
             ],
-            QUESTION_TEXT => "An array is...\n",
+            'question' => {
+                'number' => '11',
+                'text'   => 'An array is...
+'
+            }
         },
         {
-            ANSWERS       => [
-                "[X] ...in all circumstances\n",
-                "[ ] ...only if it controls exactly one statement\n",
-                "[ ] ...only if it controls two or more statements\n",
-                "[ ] ...only if the statements it controls include a variable declaration\n",
-                "[ ] ...never; the curly brackets are always optional in an 'if' statement\n",
+            'answers'  => [
+                {
+                    'checkbox' => '[X]',
+                    'text'     => '...in all circumstances
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '...only if it controls exactly one statement
+'
+                },
+                {
+                    'text'     => '...only if it controls two or more statements
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '...only if the statements it controls include a variable declaration
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '...never; the curly brackets are always optional in an \'if\' statement
+',
+                    'checkbox' => '[ ]'
+                }
             ],
-            QUESTION_TEXT => "An 'if' statement requires curly brackets around the statements it controls...\n",
+            'question' => {
+                'number' => '12',
+                'text'   => 'An \'if\' statement requires curly brackets around the statements it controls...
+'
+            }
         },
         {
-            ANSWERS       => [
-                "[X] elsif\n",
-                "[ ] elseif  (with no whitespace between the two words)\n",
-                "[ ] else if (with whitespace between the two words)\n",
-                "[ ] elif\n",
-                "[ ] ormaybe (with no whitespace between the two words)\n",
+            'answers'  => [
+                {
+                    'checkbox' => '[X]',
+                    'text'     => 'elsif
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'elseif  (with no whitespace between the two words)
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'else if (with whitespace between the two words)
+'
+                },
+                {
+                    'text'     => 'elif
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'ormaybe (with no whitespace between the two words)
+'
+                }
             ],
-            QUESTION_TEXT => "To specify a second alternative test after an 'if', the correct keyword is:\n",
+            'question' => {
+                'text'   => 'To specify a second alternative test after an \'if\', the correct keyword is:
+',
+                'number' => '13'
+            }
         },
         {
-            ANSWERS       => [
-                "[X] ...Perl evaluates as little as required to get a definite answer\n",
-                "[ ] ...Perl only evaluates each boolean expression once during the program\n",
-                "[ ] ...Perl defers evaluating the expression until the result is tested\n",
-                "[ ] ...Perl will never execute an 'else' block\n",
-                "[ ] ...Perl programs can cause CPUs to emit sparks if an expression is too complex\n",
+            'answers'  => [
+                {
+                    'text'     => '...Perl evaluates as little as required to get a definite answer
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'text'     => '...Perl only evaluates each boolean expression once during the program
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '...Perl defers evaluating the expression until the result is tested
+'
+                },
+                {
+                    'text'     => '...Perl will never execute an \'else\' block
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '...Perl programs can cause CPUs to emit sparks if an expression is too complex
+',
+                    'checkbox' => '[ ]'
+                }
             ],
-            QUESTION_TEXT => "\"Short-circuiting\" of a boolean expression means...\n",
+            'question' => {
+                'text'   => '"Short-circuiting" of a boolean expression means...
+',
+                'number' => '14'
+            }
         },
         {
-            ANSWERS       => [
-                "[X] ...once per element in the list, unless a 'last' is executed in the block\n",
-                "[ ] ...once per element in the list in all circumstances\n",
-                "[ ] ...endlessly, until a 'last' is executed in the loop\n",
-                "[ ] ...an unknown number of times, until the list being iterated is empty\n",
-                "[ ] ...never, because an array is not a list and cannot be iterated\n",
+            'answers'  => [
+                {
+                    'text'     => '...once per element in the list, unless a \'last\' is executed in the block
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'text'     => '...once per element in the list in all circumstances
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '...endlessly, until a \'last\' is executed in the loop
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '...an unknown number of times, until the list being iterated is empty
+'
+                },
+                {
+                    'text'     => '...never, because an array is not a list and cannot be iterated
+',
+                    'checkbox' => '[ ]'
+                }
             ],
-            QUESTION_TEXT => "A \"foreach-style\" loop (such as: for (\@list) {...}) will be iterated...\n",
+            'question' => {
+                'number' => '15',
+                'text'   => 'A "foreach-style" loop (such as: for (@list) {...}) will be iterated...
+'
+            }
         },
         {
-            ANSWERS       => [
-                "[X] ...iterates until its condition is false at the start of an iteration\n",
-                "[ ] ...iterates until its condition is true at the start of an iteration\n",
-                "[ ] ...iterates until its condition becomes false anywhere within its block\n",
-                "[ ] ...iterates until its condition becomes true anywhere within its block\n",
-                "[ ] ...doesn't exist; Perl does not have a 'while' loop\n",
+            'answers'  => [
+                {
+                    'checkbox' => '[X]',
+                    'text'     => '...iterates until its condition is false at the start of an iteration
+'
+                },
+                {
+                    'text'     => '...iterates until its condition is true at the start of an iteration
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '...iterates until its condition becomes false anywhere within its block
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '...iterates until its condition becomes true anywhere within its block
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '...doesn\'t exist; Perl does not have a \'while\' loop
+'
+                }
             ],
-            QUESTION_TEXT => "The 'while' loop in Perl...\n",
+            'question' => {
+                'number' => '16',
+                'text'   => 'The \'while\' loop in Perl...
+'
+            }
         },
         {
-            ANSWERS       => [
-                "[X] 'given'  and 'when'    and 'default'\n",
-                "[ ] 'switch' and 'case'    and 'else'\n",
-                "[ ] 'gather' and 'take'    and 'otherwise'\n",
-                "[ ] 'case'   and 'of'      and 'or'\n",
-                "[ ] 'whence' and 'whither' and 'thither'\n",
-            ],
-            QUESTION_TEXT => "The keywords for the Perl switch statement are:\n",
+            'question' => {
+                'text'   => 'The keywords for the Perl switch statement are:
+',
+                'number' => '17'
+            },
+            'answers'  => [
+                {
+                    'text'     => '\'given\'  and \'when\'    and \'default\'
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '\'switch\' and \'case\'    and \'else\'
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '\'gather\' and \'take\'    and \'otherwise\'
+'
+                },
+                {
+                    'text'     => '\'case\'   and \'of\'      and \'or\'
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '\'whence\' and \'whither\' and \'thither\'
+',
+                    'checkbox' => '[ ]'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] 0, '0', '', (), undef\n",
-                "[ ] 0, '0', '', (), []\n",
-                "[ ] 0, '0', 'false', 'False', 'FALSE'\n",
-                "[ ] 0, +0, -0, 0.0, -0.0\n",
-                "[ ] False, Nil, Null, None, Empty\n",
-            ],
-            QUESTION_TEXT => "Which five Perl values are the only values that ever evaluate false?\n",
+            'question' => {
+                'number' => '18',
+                'text'   => 'Which five Perl values are the only values that ever evaluate false?
+'
+            },
+            'answers'  => [
+                {
+                    'text'     => '0, \'0\', \'\', (), undef
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'text'     => '0, \'0\', \'\', (), []
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '0, \'0\', \'false\', \'False\', \'FALSE\'
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '0, +0, -0, 0.0, -0.0
+'
+                },
+                {
+                    'text'     => 'False, Nil, Null, None, Empty
+',
+                    'checkbox' => '[ ]'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] Six:   because the four array elements will be flattened into the list\n",
-                "[ ] Eight: because 1 * 4 * 2 = 8\n",
-                "[ ] Three: because the array will become a single element within the list\n",
-                "[ ] Two:   because Perl ignores non-scalar variables in a list constructor\n",
-                "[ ] None:  because it won't compile; arrays can't be used in list constructors\n",
-            ],
-            QUESTION_TEXT => "If the array \@x contains four elements,\n    how many elements will be in the list (1, \@x, 2)?\n",
+            'question' => {
+                'text'   => 'If the array @x contains four elements,
+    how many elements will be in the list (1, @x, 2)?
+',
+                'number' => '19'
+            },
+            'answers'  => [
+                {
+                    'checkbox' => '[X]',
+                    'text'     => 'Six:   because the four array elements will be flattened into the list
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'Eight: because 1 * 4 * 2 = 8
+'
+                },
+                {
+                    'text'     => 'Three: because the array will become a single element within the list
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => 'Two:   because Perl ignores non-scalar variables in a list constructor
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => 'None:  because it won\'t compile; arrays can\'t be used in list constructors
+',
+                    'checkbox' => '[ ]'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] Values of any scalar type, indexed by keys that are always strings\n",
-                "[ ] Values of any scalar or list type, indexed by keys that are always strings\n",
-                "[ ] Values that are always strings, indexed by keys of any type\n",
-                "[ ] Values that are unique, indexed by keys that may be repeated\n",
-                "[ ] Random values, indexed by sequential keys of any type\n",
+            'answers'  => [
+                {
+                    'checkbox' => '[X]',
+                    'text'     => 'Values of any scalar type, indexed by keys that are always strings
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'Values of any scalar or list type, indexed by keys that are always strings
+'
+                },
+                {
+                    'text'     => 'Values that are always strings, indexed by keys of any type
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => 'Values that are unique, indexed by keys that may be repeated
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => 'Random values, indexed by sequential keys of any type
+',
+                    'checkbox' => '[ ]'
+                }
             ],
-            QUESTION_TEXT => "A hash variable stores...\n",
+            'question' => {
+                'text'   => 'A hash variable stores...
+',
+                'number' => '20'
+            }
         },
         {
-            ANSWERS       => [
-                "[X] 0 (because that's the correct mathematical outcome)\n",
-                "[ ] 1 (as a convenience, to avoid subsequent division by zero)\n",
-                "[ ] A non-fatal warning (because 'Inf' is a string, not a number)\n",
-                "[ ] A fatal exception (because 'Inf' is a string, not a number)\n",
-                "[ ] An infinite evaluation loop; the program will run forever\n",
-            ],
-            QUESTION_TEXT => "The expression 1 / 'Inf' produces the result:\n",
+            'question' => {
+                'number' => '21',
+                'text'   => 'The expression 1 / \'Inf\' produces the result:
+'
+            },
+            'answers'  => [
+                {
+                    'text'     => '0 (because that\'s the correct mathematical outcome)
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '1 (as a convenience, to avoid subsequent division by zero)
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'A non-fatal warning (because \'Inf\' is a string, not a number)
+'
+                },
+                {
+                    'text'     => 'A fatal exception (because \'Inf\' is a string, not a number)
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'An infinite evaluation loop; the program will run forever
+'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] A type-safe immutable pointer to an existing value or variable\n",
-                "[ ] A mutable pointer to a value or variable, without type-checking\n",
-                "[ ] An alias (i.e. another name) for an existing variable\n",
-                "[ ] A deep copy of an existing variable or value\n",
-                "[ ] A link to the documentation for an existing value or variable\n",
+            'answers'  => [
+                {
+                    'checkbox' => '[X]',
+                    'text'     => 'A type-safe immutable pointer to an existing value or variable
+'
+                },
+                {
+                    'text'     => 'A mutable pointer to a value or variable, without type-checking
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'An alias (i.e. another name) for an existing variable
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'A deep copy of an existing variable or value
+'
+                },
+                {
+                    'text'     => 'A link to the documentation for an existing value or variable
+',
+                    'checkbox' => '[ ]'
+                }
             ],
-            QUESTION_TEXT => "A \"reference\" in Perl is best described as:\n",
+            'question' => {
+                'number' => '22',
+                'text'   => 'A "reference" in Perl is best described as:
+'
+            }
         },
         {
-            ANSWERS       => [
-                "[X] ...scalars, arrays, hashes, and subroutines\n",
-                "[ ] ...scalars, arrays, and hashes, but NOT subroutines\n",
-                "[ ] ...scalars and arrays, but NOT hashes or subroutines\n",
-                "[ ] ...arrays and hashes (i.e. containers), but NOT scalars or subroutines\n",
-                "[ ] ...only scalars (NOT to arrays, hashes, or subroutines)\n",
-            ],
-            QUESTION_TEXT => "In Perl, you can take references to...\n",
+            'question' => {
+                'text'   => 'In Perl, you can take references to...
+',
+                'number' => '23'
+            },
+            'answers'  => [
+                {
+                    'text'     => '...scalars, arrays, hashes, and subroutines
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'text'     => '...scalars, arrays, and hashes, but NOT subroutines
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '...scalars and arrays, but NOT hashes or subroutines
+'
+                },
+                {
+                    'text'     => '...arrays and hashes (i.e. containers), but NOT scalars or subroutines
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '...only scalars (NOT to arrays, hashes, or subroutines)
+'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] 'sub'\n",
-                "[ ] 'subroutine'\n",
-                "[ ] 'fun'\n",
-                "[ ] 'do'\n",
-                "[ ] Nothing: subroutines are not explicitly declared in Perl\n",
+            'answers'  => [
+                {
+                    'text'     => '\'sub\'
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'text'     => '\'subroutine\'
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '\'fun\'
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '\'do\'
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'Nothing: subroutines are not explicitly declared in Perl
+'
+                }
             ],
-            QUESTION_TEXT => "User-defined subroutines are declared with the keyword:\n",
+            'question' => {
+                'text'   => 'User-defined subroutines are declared with the keyword:
+',
+                'number' => '24'
+            }
         },
         {
-            ANSWERS       => [
-                "[X] \@_\n",
-                "[ ] \$_\n",
-                "[ ] \@ARGV\n",
-                "[ ] \@ARGS\n",
-                "[ ] \$ARGV\n",
-            ],
-            QUESTION_TEXT => "Which variable contains the argument with which a subroutine was called?\n",
+            'question' => {
+                'text'   => 'Which variable contains the argument with which a subroutine was called?
+',
+                'number' => '25'
+            },
+            'answers'  => [
+                {
+                    'text'     => '@_
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '$_
+'
+                },
+                {
+                    'text'     => '@ARGV
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '@ARGS
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '$ARGV
+'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] sub two_or_more (\$flag, \@data)           {...}\n",
-                "[ ] sub two_or_more (\$data, \$flag)           {...}\n",
-                "[ ] sub two_or_more (\$flag, \$data = \@extras) {...}\n",
-                "[ ] sub two_or_more (\$flag, ...)             {...}\n",
-                "[ ] sub two_or_more (\@flags, \@data_set)      {...}\n",
-            ],
-            QUESTION_TEXT => "Which one of the following subroutine declarations correctly declares\n    a subroutine that can must be called with at least two arguments\n    but which may also be called with more than two arguments?\n",
+            'question' => {
+                'number' => '26',
+                'text'   => 'Which one of the following subroutine declarations correctly declares
+    a subroutine that can must be called with at least two arguments
+    but which may also be called with more than two arguments?
+'
+            },
+            'answers'  => [
+                {
+                    'checkbox' => '[X]',
+                    'text'     => 'sub two_or_more ($flag, @data)           {...}
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'sub two_or_more ($data, $flag)           {...}
+'
+                },
+                {
+                    'text'     => 'sub two_or_more ($flag, $data = @extras) {...}
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'sub two_or_more ($flag, ...)             {...}
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'sub two_or_more (@flags, @data_set)      {...}
+'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] ...it will return the value the last expression it actually evaluates\n",
-                "[ ] ...it will return the value the final statement in its code block\n",
-                "[ ] ...it will return 'undef'\n",
-                "[ ] ...it will throw an exception after executing its final statement\n",
-                "[ ] ...it will never return and will continue to execute forever\n",
-            ],
-            QUESTION_TEXT => "If a user-defined subroutine does not contain a 'return' statement...\n",
+            'question' => {
+                'text'   => 'If a user-defined subroutine does not contain a \'return\' statement...
+',
+                'number' => '27'
+            },
+            'answers'  => [
+                {
+                    'text'     => '...it will return the value the last expression it actually evaluates
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '...it will return the value the final statement in its code block
+'
+                },
+                {
+                    'text'     => '...it will return \'undef\'
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '...it will throw an exception after executing its final statement
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => '...it will never return and will continue to execute forever
+'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] 'die'\n",
-                "[ ] 'throw'\n",
-                "[ ] 'raise'\n",
-                "[ ] 'except'\n",
-                "[ ] 'exit'\n",
-            ],
-            QUESTION_TEXT => "The keyword to throw an exception in Perl is:\n",
+            'question' => {
+                'text'   => 'The keyword to throw an exception in Perl is:
+',
+                'number' => '28'
+            },
+            'answers'  => [
+                {
+                    'text'     => '\'die\'
+',
+                    'checkbox' => '[X]'
+                },
+                {
+                    'text'     => '\'throw\'
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '\'raise\'
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '\'except\'
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => '\'exit\'
+',
+                    'checkbox' => '[ ]'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] Caught in an 'eval' block;  accessed via the special \$\@ variable\n",
-                "[ ] Caught in an 'eval' block'; accessed via the special \$! variable\n",
-                "[ ] Caught in a 'catch' block;  accessed via an 'access' block\n",
-                "[ ] Caught in a 'try' block;    accessed via the builtin 'eval' function\n",
-                "[ ] Exceptions in Perl can't be caught or accessed after they're thrown\n",
-            ],
-            QUESTION_TEXT => "How can exceptions be caught and subsequently accessed in Perl?\n",
+            'question' => {
+                'number' => '29',
+                'text'   => 'How can exceptions be caught and subsequently accessed in Perl?
+'
+            },
+            'answers'  => [
+                {
+                    'checkbox' => '[X]',
+                    'text'     => 'Caught in an \'eval\' block;  accessed via the special $@ variable
+'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'Caught in an \'eval\' block\'; accessed via the special $! variable
+'
+                },
+                {
+                    'text'     => 'Caught in a \'catch\' block;  accessed via an \'access\' block
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'checkbox' => '[ ]',
+                    'text'     => 'Caught in a \'try\' block;    accessed via the builtin \'eval\' function
+'
+                },
+                {
+                    'text'     => 'Exceptions in Perl can\'t be caught or accessed after they\'re thrown
+',
+                    'checkbox' => '[ ]'
+                }
+            ]
         },
         {
-            ANSWERS       => [
-                "[X] It disallows undeclared variables, barewords, and symbolic references\n",
-                "[ ] It converts all warnings to fatal errors\n",
-                "[ ] It disallows package variables (all variables must be declared with 'my')\n",
-                "[ ] It reports all errors using verbose (and harshly worded) error messages\n",
-                "[ ] It prevents any construct that might also be valid C code\n",
-            ],
-            QUESTION_TEXT => "What is the purpose of the 'use strict' pragma?\n",
-        },
+            'question' => {
+                'text'   => 'What is the purpose of the \'use strict\' pragma?
+',
+                'number' => '30'
+            },
+            'answers'  => [
+                {
+                    'checkbox' => '[X]',
+                    'text'     => 'It disallows undeclared variables, barewords, and symbolic references
+'
+                },
+                {
+                    'text'     => 'It converts all warnings to fatal errors
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => 'It disallows package variables (all variables must be declared with \'my\')
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => 'It reports all errors using verbose (and harshly worded) error messages
+',
+                    'checkbox' => '[ ]'
+                },
+                {
+                    'text'     => 'It prevents any construct that might also be valid C code
+',
+                    'checkbox' => '[ ]'
+                }
+            ]
+        }
     ],
+    'header'           => 'Student ID:  [____________]
+Family Name: [____________]
+First Name:  [____________]
+
+INSTRUCTIONS:
+
+Complete and return this multiple-choice exam
+no later than 23:59 CET Monday 23 August 2021.
+
+You may consult any written material you wish
+(e.g. the class notes or the recommended textbook),
+but you must not consult or collaborate with
+any other person.
+
+Complete this exam by placing an \'X\' in the box
+beside the single correct answer of each question,
+like so:
+
+    [ ] This is not the correct answer
+    [ ] This is not the correct answer either
+    [ ] This is an incorrect answer
+    [X] This is the correct answer
+    [ ] This is an irrelevant answer
+
+WARNING: Each question has only one correct answer.
+         If two or more boxes are marked with an \'X\',
+         the answer will be scored as zero.
+
+________________________________________________________________________________
+'
 };
