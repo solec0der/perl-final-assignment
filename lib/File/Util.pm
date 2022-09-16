@@ -12,11 +12,7 @@ our @EXPORT = ('load_file', 'create_filename_for_exam_file', 'write_content_to_f
 
 sub load_file($file_name) {
     my $file_handle = open_file($file_name, 1, "<");
-    my $file_content;
-    while (my $buffer = readline($file_handle)) {
-        $file_content .= $buffer;
-    }
-    return $file_content;
+    return do { local $/; readline($file_handle); };
 }
 
 sub open_file($file_name, $check_if_file_exists, $mode) {

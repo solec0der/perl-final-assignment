@@ -18,6 +18,7 @@ our @EXPORT = (
 
 use Regexp::Grammars;
 
+# Grammar to parse an exam file into a hash data structure which can be used for further processing
 my $EXAM_GRAMMAR = qr{
     <exam>
     <nocontext:>
@@ -57,6 +58,7 @@ my $SEPARATOR = "_______________________________________________________________
 my $ANSWER_CHECKED_REGEX = qr/(\[[xX]])/mp;
 
 sub parse_exam($source_file_name, $file_content) {
+    # Parses an exam file from a string to a hash data structure using a Grammar.
     my $exam;
     if ($file_content =~ $EXAM_GRAMMAR) {
         $exam = $/{exam};
@@ -101,6 +103,7 @@ sub is_answer_checked($answer) {
 }
 
 sub create_exam_file($exam, $master_file_name) {
+    # Turns an exam hash data structure into a file with the same structure as the source exam file.
     my $final_result = "$exam->{'header'}\n";
     my $questions = $exam->{'questions'};
 

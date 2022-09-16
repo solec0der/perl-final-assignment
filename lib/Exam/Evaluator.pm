@@ -14,6 +14,7 @@ use Data::Dumper;
 use Exporter 'import';
 our @EXPORT = ('score_exams', 'print_missing_questions_and_answers');
 
+# Wrapper function for score_exam where a list of student_exams can be passed
 sub score_exams($master_exam, $student_exams) {
     say "\n\n";
     print_separator();
@@ -31,6 +32,7 @@ sub score_exams($master_exam, $student_exams) {
 
 # method to score an individual exam
 sub score_exam($master_exam, $student_exam) {
+    # Setup report hash data structure
     my %report;
     $report{'source_file_name'} = $student_exam->{'source_file_name'};
     $report{'missing_questions'} = [];
@@ -40,6 +42,7 @@ sub score_exam($master_exam, $student_exam) {
     $report{'correctly_answered_questions'} = 0;
     $report{'answered_questions'} = 0;
 
+    # Iterate over questionos in master exam and searching student exam for each question
     for my $master_question (@{$master_exam->{'questions'}}) {
         my $master_question_text = $master_question->{'question'}->{'text'};
 
@@ -54,6 +57,7 @@ sub score_exam($master_exam, $student_exam) {
             my $matched_question_text = fuzzy_match_string($master_question_text, $student_question_text);
 
             if ($matched_question_text) {
+                # If the found question is not an exact match, add it to the list of inexact question matches.
                 if (!($matched_question_text eq normalize_string($master_question_text))) {
                     my %ineaxct_match = (
                         "expected_text" => normalize_string($master_question_text),
@@ -63,6 +67,8 @@ sub score_exam($master_exam, $student_exam) {
                     push(@{$report{'inexactly_matched_questions'}}, \%ineaxct_match);
                 }
 
+                # If the question was found, search all answers in the student exam and check if the correct answer is
+                # checked and if answers are missing from the exam
                 $found_question = 1;
                 my @student_checked_answers = @{get_checked_answers($student_question)};
                 my %missing_answers_report = %{get_missing_answers($master_question->{'answers'}, $student_question->{'answers'})};
