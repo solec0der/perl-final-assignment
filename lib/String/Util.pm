@@ -10,7 +10,7 @@ use Text::Levenshtein::XS qw(distance);
 
 use Data::Dumper;
 
-our @EXPORT = ('fuzzy_match_string', 'fuzzy_match_strings' , 'normalize_string');
+our @EXPORT = ('fuzzy_match_string' , 'normalize_string');
 
 my $LEVENSTEIN_MATCH_THRESHOLD = 0.1;
 my @stop_words = ("the", "a", "an", "of", "and", "it", "for", "or", "but", "in");
@@ -36,3 +36,28 @@ sub normalize_string($string) {
     $normalized_string =~ s/\s+/ /g;
     return $normalized_string;
 }
+
+1; # Magic true value required at end of module
+
+=head1 NAME
+
+String::Util - Module containing functions to manipulate strings (normalization and matching)
+
+=head1 VERSION
+
+This documentation refers to String::Util version 0.0.1
+
+=head1 SYNOPSIS
+
+    # Fuzzy match a string against another string
+    # Returns the seconds string if it was able to match the second string against the first string.
+    # Only returns a match, if the edit distance divided by the length of the first string is <= 0.1
+    # Multiple normalization steps are also applied (to lower case, removal of stop words, substitution of any whitespace sequences with a single whitespace)
+    my $source_string = "Hello world!";
+    my $target_string = "Hallo world!";
+
+    fuzzy_match_string($source_string, $target_string); # will return "hallo world!"
+
+    # Normalizes a given string
+    my $string = "This is a      string to normalize";
+    my $normalized_string = normalize_string($string); # returns "this is string to normalize"

@@ -157,3 +157,43 @@ sub print_missing_questions_and_answers($reports) {
         }
     }
 }
+
+1; # Magic true value required at end of module
+
+=head1 NAME
+
+Exam::Evaluator - Module providing functions to evaluate an exam and find missing questions and answers.
+
+=head1 VERSION
+
+This documentation refers to Exam::Evaluator version 0.0.1
+
+=head1 SYNOPSIS
+
+    # Scores a list of exams
+    # The exams need to be read from a file with the Exam::Parser module.
+
+    # Load the master file containing the correct answers
+    my $master_file_content = load_file($master_file_name);
+    my $master_exam = parse_exam($master_file_name, $master_file_content);
+
+    my @student_exams;
+
+    # Load all student exam files
+    for my $student_exam_file_name (@student_exam_file_names) {
+      my $file_content = load_file($student_exam_file_name) || '';
+      push(@student_exams, parse_exam($student_exam_file_name, $file_content));
+    }
+
+    # Score exams using the master exam and produce a list of reports
+    # These reports contain information about
+    # - how many questions are missing from the student file
+    # - how many answers are missing from the answer file
+    # - how many questions were inexactly matched (the student file contains a question that is similar to the master file)
+    # - how many answers were inexactly matched (the student file contains an answer that is similar to the master file)
+    # - how many answers were correctly answered
+    # - how many answers were answered in total
+    my $reports = score_exams($master_exam, \@student_exams);
+
+    # Takes a report as an input and prints the missing questions and answers
+    print_missing_questions_and_answers(\$reports);

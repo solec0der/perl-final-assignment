@@ -54,5 +54,26 @@ __END__
 
 =head1 NAME
 
-File::Tools - "DESCRIPTION"
+File::Util - Functions to interact with files (reading files into variables, writing to files, etc.)
 
+=head1 VERSION
+
+This documentation refers to File::Util version 0.0.1
+
+=head1 SYNOPSIS
+
+    use File::Util;
+
+    my $file_name = "file.txt";
+
+    # Load file content into string variable
+    my $file_content = load_file($file_name);
+
+    # Create filename for exam file (will output something like 20220916-162350_source_file_name.txt)
+    my $master_file_name = "_source_file_name.txt";
+    my $exam_file_name = create_filename_for_exam_file($master_file_name);
+
+    # Write content of string variable to file
+    my $file_content = "This is some text";
+    my $file_name = "file_name.txt";
+    write_content_to_file($file_content, $file_name);

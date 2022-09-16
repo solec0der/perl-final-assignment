@@ -123,7 +123,7 @@ sub create_exam_file($exam, $master_file_name) {
     return $output_file_name;
 }
 
-1;
+1; # Magic true value required at end of module
 
 =head1 NAME
 
