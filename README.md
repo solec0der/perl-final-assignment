@@ -46,7 +46,7 @@ Examples
     - [x] Randomize order of answers
     - [x] Print each answer with empty checkbox in front of it
     - [x] Write post processed contents in file with format `YYYYMMDD-HHMMSS-<FILENAME>`
-- [ ] Part 1b: Scoring of student responses
+- [x] Part 1b: Scoring of student responses
     - [x] Read file of master and student files
     - [x] Globbing
     - [x] Only one check mark must be checked. Otherwise 0 points will be awarded.
