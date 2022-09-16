@@ -6,7 +6,7 @@ use warnings;
 use experimental 'signatures';
 
 use Exporter 'import';
-our @EXPORT = ('prompt_if_file_should_be_opened_in_editor', 'print_usage_for_create_exam_script', 'print_usage_for_score_exams_script');
+our @EXPORT = ('prompt_if_file_should_be_opened_in_editor', 'print_usage_for_create_exam_script', 'print_usage_for_score_exams_script', 'print_separator');
 
 sub prompt_if_file_should_be_opened_in_editor($file_name) {
     print "Would you like to open the file in vim? (y/n) [n]: ";
@@ -34,4 +34,8 @@ sub print_usage_for_score_exams_script() {
     say "  \$ ./score_exams.pl <PATH_TO_MASTER_EXAM_FILE> <GLOBBING_PATTERN_TO_EXAM_FILES>";
     say "Examples";
     say "  ./score_exams.pl _short_exam_master_file.txt *completed_exam.txt"
+}
+
+sub print_separator() {
+    say "================================================================================";
 }

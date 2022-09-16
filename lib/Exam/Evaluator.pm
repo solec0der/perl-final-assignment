@@ -7,6 +7,7 @@ use experimental 'signatures';
 
 use Exam::Parser;
 use String::Util;
+use Terminal::Util;
 
 use Data::Dumper;
 
@@ -14,6 +15,13 @@ use Exporter 'import';
 our @EXPORT = ('score_exams', 'print_missing_questions_and_answers');
 
 sub score_exams($master_exam, $student_exams) {
+    say "\n\n";
+    print_separator();
+    say "=== Results ===";
+    print_separator();
+
+    say "\n\n";
+
     my @reports;
     for my $student_exam (@{$student_exams}) {
         push(@reports, score_exam($master_exam, $student_exam));
@@ -27,6 +35,8 @@ sub score_exam($master_exam, $student_exam) {
     $report{'source_file_name'} = $student_exam->{'source_file_name'};
     $report{'missing_questions'} = [];
     $report{'missing_answers'} = [];
+    $report{'inexactly_matched_questions'} = [];
+    $report{'inexactly_matched_answers'} = [];
     $report{'correctly_answered_questions'} = 0;
     $report{'answered_questions'} = 0;
 
@@ -124,10 +134,13 @@ sub print_score($report) {
 }
 
 sub print_missing_questions_and_answers($reports) {
-    say "\n\nThe following issues were found while evaluating the exams. These exams might need further manual investigation:\n\n";
 
     for my $report (@{$reports}) {
-        if (scalar(@{$report->{'missing_questions'}}) == 0 && scalar(@{$report->{'missing_answers'}}) == 0) {
+        if (scalar(@{$report->{'inexactly_matched_questions'}}) == 0 &&
+            scalar(@{$report->{'inexactly_matched_answers'}}) == 0 &&
+            scalar(@{$report->{'missing_questions'}}) == 0 &&
+            scalar(@{$report->{'missing_answers'}}) == 0
+        ) {
             next;
         }
 
@@ -142,8 +155,9 @@ sub print_missing_questions_and_answers($reports) {
         }
 
         for my $inexactly_matched_question (@{$report->{'inexactly_matched_questions'}}) {
-            print "    Missing question: " . $inexactly_matched_question->{'expected_text'};
-            print "    Used this instead: " . $inexactly_matched_question->{'actual_text'};
+            say "    Missing question: " . $inexactly_matched_question->{'expected_text'};
+            say "    Used this instead: " . $inexactly_matched_question->{'actual_text'};
+            say "";
         }
 
         for my $inexactly_matched_answer (@{$report->{'inexactly_matched_answers'}}) {

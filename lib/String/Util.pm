@@ -29,8 +29,8 @@ sub fuzzy_match_string($string_1, $string_2) {
 
 sub normalize_string($string) {
     my $normalized_string = lc($string);
+    $normalized_string =~ s/$stop_words_regex//g;
     $normalized_string =~ s/^\s+|\s+$//g;
     $normalized_string =~ s/\s+/ /g;
-    $normalized_string =~ s/$stop_words_regex//g;
     return $normalized_string;
 }

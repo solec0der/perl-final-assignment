@@ -36,4 +36,11 @@ for my $student_exam_file_name (@student_exam_file_names) {
 
 my $reports = score_exams($master_exam, \@student_exams);
 
+say "\n\n";
+print_separator();
+say "=== Issues ===";
+print_separator();
+
+say "\n\nThe following issues were found while evaluating the exams. These exams might need further manual investigation:\n\n";
+
 print_missing_questions_and_answers($reports);
