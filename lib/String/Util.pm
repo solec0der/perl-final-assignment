@@ -8,10 +8,12 @@ use experimental 'signatures';
 use Exporter 'import';
 use Text::Levenshtein::XS qw(distance);
 
-our @EXPORT = ('fuzzy_match_string', 'normalize_string');
+use Data::Dumper;
+
+our @EXPORT = ('fuzzy_match_string', 'fuzzy_match_strings' , 'normalize_string');
 
 my $LEVENSTEIN_MATCH_THRESHOLD = 0.1;
-my @stop_words = ("the", "a", "an", "of", "and", "it", "for", "or", "but", "in", "my", "your", "our", "their");
+my @stop_words = ("the", "a", "an", "of", "and", "it", "for", "or", "but", "in");
 my ($stop_words_regex) = map qr/(?:$_)/, join "|", map qr/\b\Q$_\E\b/, @stop_words;
 
 sub fuzzy_match_string($string_1, $string_2) {

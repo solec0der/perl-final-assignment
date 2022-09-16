@@ -102,18 +102,9 @@ sub get_missing_answers($actual_answers, $student_answers) {
         my $found = 0;
 
         for my $student_answer (@{$student_answers}) {
-            my $matched_answer_text = fuzzy_match_string($actual_answer->{'text'}, $student_answer->{'text'});
-
-            if ($matched_answer_text) {
+            # won't use fuzzy matching here yet due to a bug in the fuzzy matcher
+            if (normalize_string($actual_answer->{'text'}) eq normalize_string($student_answer->{'text'})) {
                 $found = 1;
-
-                if (!($matched_answer_text eq normalize_string($actual_answer->{'text'}))) {
-                    my %ineaxct_match = (
-                        "expected_text" => normalize_string($actual_answer->{'text'}),
-                        "actual_text"   => $matched_answer_text
-                    );
-                    push(@inexact_matches, \%ineaxct_match);
-                }
                 last;
             }
         }
@@ -134,7 +125,6 @@ sub print_score($report) {
 }
 
 sub print_missing_questions_and_answers($reports) {
-
     for my $report (@{$reports}) {
         if (scalar(@{$report->{'inexactly_matched_questions'}}) == 0 &&
             scalar(@{$report->{'inexactly_matched_answers'}}) == 0 &&
